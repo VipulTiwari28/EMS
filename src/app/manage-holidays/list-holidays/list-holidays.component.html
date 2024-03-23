@@ -1,0 +1,116 @@
+<app-loader [load]="loader"></app-loader>
+
+<div class="body container">
+  <div class="pt-2 pt-lg-5 d-flex justify-content-between align-items-center">
+    <input
+      matInput
+      (input)="filterHolidays(filter.value)"
+      placeholder="Filter"
+      name="filterText"
+      #filter
+    />
+
+    <div class="d-flex gap-1 align-items-center">
+      <tui-svg
+        src="tuiIconRefreshCwLarge"
+        class="me-2"
+        [ngClass]="loader ? 'rotate' : ''"
+        type="button"
+        (click)="loadHolidays()"
+      ></tui-svg>
+      <button
+        tuiButton
+        appearance="secondary"
+        (click)="sortHolidays()"
+        size="m"
+        type="button"
+      >
+        Sort
+        <tui-svg src="tuiIconSortOff"></tui-svg>
+      </button>
+      <button
+        tuiButton
+        size="m"
+        (click)="showDialog(form)"
+        class="d-none d-md-inline"
+      >
+        Add <tui-svg src="tuiIconPlus"></tui-svg>
+
+        <!-- add user form -->
+        <ng-template let-observer #form>
+          <app-holidayform
+            [observer]="observer"
+            (done)="observer.complete(); addAlert()"
+            [edit]="false"
+          ></app-holidayform>
+        </ng-template>
+      </button>
+    </div>
+  </div>
+  <div class="row" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div
+      class="col-12 col-md-4 col-lg-4 my-2"
+      *ngFor="let item of holidays"
+      cdkDrag
+    >
+      <a
+        size="l"
+        class="card"
+        [ngClass]="upcomingDate(item.date) ? 'bg-green' : 'bg-grey'"
+        tuiIsland
+      >
+        <div class="tui-island__content">
+          <figure class="tui-island__figure">
+            <div
+              class="some-figure d-flex justify-content-center align-items-center"
+              (click)="showDialog(editform)"
+            >
+              <tui-svg type="button" src="tuiIconEditLarge"></tui-svg>
+
+              <ng-template #editform let-observer>
+                <app-holidayform
+                  [Index]="item.key"
+                  [Name]="item.name"
+                  [type]="item.type"
+                  [date]="item.date"
+                  [edit]="true"
+                  (done)="observer.complete(); addAlert()"
+                ></app-holidayform>
+              </ng-template>
+            </div>
+          </figure>
+          <div>
+            <h3 class="tui-island__title">{{ item.name }}</h3>
+            <p class="tui-island__category">
+              {{ item.type }}
+            </p>
+            <p class="tui-island__paragraph">
+              {{ item.date | date : "dd-MMM"
+              }}{{ upcomingDate(item.date) ? "(Upcoming)" : "" }}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Add holidays button for mobile -->
+
+  <button
+    tuiButton
+    size="l"
+    (click)="showDialog(form)"
+    class="add-mobile d-block d-md-none"
+  >
+    Add <tui-svg src="tuiIconPlus"></tui-svg>
+
+    <!-- add holiday form -->
+    <ng-template let-observer #form>
+      <app-holidayform
+        [observer]="observer"
+        (done)="observer.complete(); addAlert()"
+        [edit]="false"
+      ></app-holidayform>
+    </ng-template>
+  </button>
+</div>

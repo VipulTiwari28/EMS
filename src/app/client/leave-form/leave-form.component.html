@@ -1,0 +1,93 @@
+<tui-loader [showLoader]="load" [overlay]="true">
+<div class="container">
+    <form [formGroup]="leaveForm" class="form p-5 mb-3 container">
+      <!-- Tui notifications -->
+      <tui-notification
+        status="error"
+        class="tui-space_vertical-2"
+        *ngIf="error"
+      >
+        {{ errorMsg }}
+      </tui-notification>
+      <tui-notification
+        status="success"
+        class="tui-space_vertical-2"
+        *ngIf="success"
+      >
+        {{ successMsg }}
+      </tui-notification>
+
+      <!-- Form input fields -->
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Leave Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{ type | uppercase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Reason</mat-label>
+        <input formControlName="reason" matInput type="text" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="from" placeholder="Start date" />
+          <input matEndDate formControlName="to" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error
+          *ngIf="leaveForm.controls.from.hasError('matStartDateInvalid')"
+          >Invalid start date</mat-error
+        >
+        <mat-error *ngIf="leaveForm.controls.to.hasError('matEndDateInvalid')"
+          >Invalid end date</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Form buttons -->
+      <button
+        style="float: right"
+        [disabled]="leaveForm.pristine"
+        color="warn"
+        (click)="leaveForm.reset()"
+        mat-fab
+        extended
+      >
+        Clear
+      </button>
+      <button
+        style="float: right; margin-right: 0.5rem"
+        [disabled]="leaveForm.invalid || leaveForm.pristine"
+        (click)="onSubmit()"
+        mat-fab
+        extended
+        color="primary"
+        *ngIf="!edit"
+      >
+        Apply
+        <tui-svg src="tuiIconCheck"></tui-svg>
+      </button>
+      <button
+        style="float: right; margin-right: 0.5rem"
+        [disabled]="leaveForm.invalid || leaveForm.pristine"
+        (click)="onUpdate()"
+        mat-fab
+        extended
+        color="primary"
+        *ngIf="edit"
+      >
+        Update
+        <tui-svg src="tuiIconCheck"></tui-svg>
+      </button>
+    </form>
+</div>
+</tui-loader>

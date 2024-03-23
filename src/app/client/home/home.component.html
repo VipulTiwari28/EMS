@@ -1,0 +1,72 @@
+<app-loader [load]="load"></app-loader>
+<div class="container body pt-5">
+  <div
+    class="pb-3 d-flex flex-column flex-sm-row align-items-center justify-content-between"
+  >
+    <h4 class="text-center">
+      Are you planning for a trip, traveling, or dealing with sickness?
+    </h4>
+    <button (click)="showDialog(apply)">
+      Apply Leave
+      <ng-template let-observer #apply>
+        <div class="p-2">
+          <div class="d-flex gap-2">
+            Granted :
+            <div class="cl"></div>
+            {{ cl }} casual leaves
+
+            <div class="sl"></div>
+            {{ sl }} sick leaves
+          </div>
+        </div>
+        <h1 class="text-center my-1">Apply Leave</h1>
+        <app-leave-form
+          [ID]="id"
+          [edit]="false"
+          (update)="loadLeaves()"
+        ></app-leave-form>
+      </ng-template>
+    </button>
+  </div>
+  <div (click)="showPending = !showPending" class="section mt-4 d-flex align-items-center text-muted">
+    <tui-svg
+      type="button"
+      [src]="
+        showPending ? 'tuiIconChevronDown' : 'tuiIconChevronRight'
+      "
+    ></tui-svg>
+    Applied Leaves
+  </div>
+  <div class="d-flex contain-table" *ngIf="showPending" @slideInOut>
+    <app-leave-list
+      class="flex-grow-1"
+      (update)="loadLeaves()"
+      [leaves]="leaves"
+      [ID]="id"
+      [type]="'pending'"
+    ></app-leave-list>
+  </div>
+
+  <div
+    (click)="showHistory = !showHistory"
+    class="section mt-4 d-flex align-items-center text-muted"
+  >
+    <tui-svg
+      [src]="
+        showHistory ? 'tuiIconChevronDown' : 'tuiIconChevronRight'
+      "
+      type="button"
+      src="tuiIconChevronUpLarge"
+    ></tui-svg>
+    History
+  </div>
+  <div class="d-flex contain-table" *ngIf="showHistory" @slideInOut>
+    <app-leave-list
+      class="flex-grow-1"
+      (update)="loadLeaves()"
+      [leaves]="leaves"
+      [ID]="id"
+      [type]="'completed'"
+    ></app-leave-list>
+  </div>
+</div>

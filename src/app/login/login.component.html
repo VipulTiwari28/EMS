@@ -1,0 +1,67 @@
+<app-loader [load]="load"></app-loader>
+<div class="body">
+  <!-- Hero section  -->
+  <section class="hero-section">
+    <img
+      src="../../../assets/Leave%20Management.svg"
+      alt="abstract image of a team working"
+    />
+    <p>Employee Management System : Focus on Work, We Handle the Rest</p>
+  </section>
+
+  <!-- Login container -->
+  <section class="login-container">
+    <!-- <h1 class="text-primary mt-4">
+      <span class="text-success">Leave </span> Management System
+    </h1> -->
+
+    <img src="https://webstockreview.net/images/discussion-clipart-group-talk-3.png" width="25%" height="25%" />
+    <form class="login-form" [formGroup]="loginForm">
+        <h1 class="text-center tui-form__header">Login</h1>
+        <div>
+          <p class="wrapper wrapper_dark">
+            <tui-notification
+              status="error"
+              class="tui-space_vertical-4"
+              *ngIf="invalidPassword && loginForm.dirty"
+            >
+              Invalid Password
+            </tui-notification>
+            <tui-input
+              formControlName="id"
+              tuiMode="onDark"
+              [tuiTextfieldCleaner]="true"
+            >
+              Enter your ID*
+              <input tuiTextfield placeholder="PW###" type="text" />
+            </tui-input>
+          </p>
+        </div>
+        <div>
+          <p class="wrapper wrapper_dark">
+            <tui-input-password
+              formControlName="password"
+              class="tui-space_top-2"
+            >
+              Enter password*
+              <input tuiTextfield placeholder="" />
+            </tui-input-password>
+          </p>
+        </div>
+        <div class="tui-form__buttons">
+          <button
+            tuiButton
+            appearance="secondary"
+            type="button"
+            class="tui-form__button"
+            (click)="onSubmit()"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+            <tui-svg src="tuiIconLogIn"></tui-svg>
+          </button>
+        </div>
+        <a href="/Register" class="secondaryButton btn btn-secondary">Not Registered? Sign Up</a>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,119 @@
+<div class="body">
+
+    <section class="hero-section">
+        <img src="../../../assets/Leave%20Management.svg" alt="abstract image of a team working" />
+        <p>Employee Management System : Focus on Work, We Handle the Rest</p>
+    </section>
+
+    <section class="login-container">
+        <img src="https://webstockreview.net/images/discussion-clipart-group-talk-3.png" width="25%" height="25%" />
+        <form class="login-form" [formGroup]="registerForm" (ngSubmit)="registerForm">
+            <div>
+                <label class="text-center tui-form__header" for="id">Id:</label>
+                <input type="text" id="username" formControlName="id" autofocus>
+                <div>
+                    <!-- <div *ngIf="registerForm.get('Id')?.hasError('required') && registerForm.get('Id')?.touched"></div> -->
+                    <!-- <div class="text-danger" *ngIf="registerForm.controls['id'].errors?.">
+                        This Id is already taken!
+                      </div> -->
+                </div>
+            </div>
+            <div>
+                <label class="text-center tui-form__header" for="name">Name:</label>
+                <input type="text" id="username" formControlName="name" autofocus>
+                <div>
+                    <!-- <div
+                        *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched">
+                        Username is required.
+                    </div> -->
+                </div>
+            </div>
+            <div>
+                <label class="text-center tui-form__header" for="email">Email:</label>
+                <input type="email" id="email" formControlName="email">
+                <div>
+                    <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+                        Email is required.
+                    </div>
+                    <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">
+                        Email format must be 'a&#64;b.c'.
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="text-center tui-form__header" for="password">Password:</label>
+                <input type="password" id="password" formControlName="password">
+                <div>
+                    <div
+                        *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-secondary" [disabled]="registerForm.invalid" value="Register" />
+
+            <a href="/login" class="secondaryButton btn btn-secondary">Already a member? Sign In</a>
+            <!-- <input type="submit" value="Register" /> -->
+        </form>
+    </section>
+
+
+</div>
+
+<!-- 
+
+<h1>Register</h1>
+<p>Register with Reactive Form</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username" autofocus>
+        <div>
+            <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched">
+                Username is required.
+            </div>
+            <div *ngIf="registerForm.get('username')?.hasError('minlength') && registerForm.get('username')?.touched">
+                Username must be between 4 and 8 characters.
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <div>
+            <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+                Password is required.
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+</form>
+ -->
+
+
+
+
+<!-- 
+<h1>Register</h1>
+<p>Register with Reactive Form</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username" autofocus>
+        <div>
+
+        </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <div>
+
+        </div>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+</form>
+ -->

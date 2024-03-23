@@ -1,0 +1,14 @@
+.contain {
+    border: 1px solid rgba(black, 0.05);
+    box-shadow: #121212 1px 1px 10px -7px;
+    border-radius: 10px;
+    width: 100%;
+    overflow-x: auto;
+  }
+.approved {
+    color: rgb(24, 147, 24);
+    text-shadow: rgba(black,.1) 1px 1px 0px;
+}
+.rejected {
+    color: lightcoral;
+}

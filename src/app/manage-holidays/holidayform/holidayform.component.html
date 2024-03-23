@@ -1,0 +1,55 @@
+<tui-loader size="xl" [overlay]="true" [showLoader]="load">
+  <form class="container-lg" [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+    <div class="tui-form__header" *ngIf="!edit">Add Holiday Details</div>
+    <div class="tui-form__header" *ngIf="edit">Update Holiday Details</div>
+    <div class="tui-form__row_multi-fields tui-form__row">
+
+      <div class="tui-form__multi-field">
+          <mat-form-field class="example-full-width">
+            <mat-label>Holiday Name</mat-label>
+            <input formControlName="name" matInput placeholder="Ex. Pizza" value="Sushi">
+          </mat-form-field>
+      </div>
+      <div class="tui-form__multi-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
+          <input matInput formControlName="date" [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>    
+      </div>
+    </div>
+    
+    <div tuiGroup class="group tui-form__row" [collapsed]="true">
+      <tui-radio-labeled
+        *ngFor="let type of types"
+        formControlName="type"
+        contentAlign="right"
+        size="l"
+        [item]="type"
+      >
+        {{ type }}
+      </tui-radio-labeled>
+    </div>
+    <div class="tui-form__buttons">
+      <button
+        tuiButton
+        appearance="secondary-destructive"
+        (click)="onDelete()"
+        *ngIf="edit"
+      >
+        Delete Holiday
+      </button>
+      <button
+        tuiButton
+        type="button"
+        class="tui-form__button"
+        (click)="onSubmit()"
+        [disabled]="holidayForm.pristine"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+  </tui-loader>

@@ -1,0 +1,82 @@
+
+
+.body {
+  height: calc(100vh - 75.79px);
+
+  .section {
+    &:hover {
+        cursor: pointer;
+        outline: #312450 solid 1px;
+    }
+  }
+
+  .contain-table {
+    max-height: 500px;
+    overflow: auto;
+  }
+  h4 {
+    font-weight: 800 !important;
+  }
+  button {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5em 1.8em;
+    border: 3px solid #312450;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #312450;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+
+  button:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #312450;
+    z-index: -1;
+  }
+
+  button:hover,
+  button:focus {
+    color: rgb(255, 255, 255);
+  }
+
+  button:hover:before,
+  button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+
+  button:active {
+    transform: scale(0.9);
+  }
+}
+
+.cl,
+.sl {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(black, 0.1);
+}
+
+.sl {
+  background-color: lightcoral;
+}
+
+.cl {
+  background-color: lightblue;
+}

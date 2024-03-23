@@ -1,0 +1,62 @@
+<main class="main">
+  <aside class="sidebar" [ngClass]="(isHandset$ | async)? sidenav?'':'show':'' ">
+    <nav class="nav-theme">
+      <ul>
+        <div class="h3 text-white">Welcome, <br>{{name | uppercase}}</div>
+        <li *ngIf="isAdmin">
+          <a  routerLink="/admin" routerLinkActive="is-active" (click)="sidenav = !sidenav">Dashboard</a>
+        </li>
+        <li *ngIf="!isAdmin">
+          <a  routerLink="/user" routerLinkActive="is-active" (click)="sidenav = !sidenav">Dashboard</a>
+        </li>
+        <li *ngIf="!isAdmin">
+          <a  routerLink="/holidays" routerLinkActive="is-active" (click)="sidenav = !sidenav">Holidays</a>
+        </li>
+        <li *ngIf="isAdmin"><a  routerLink="/leaves" routerLinkActive="is-active" (click)="sidenav = !sidenav">Leaves</a></li>
+        <div class="text-white hover" (click)="sidenav = !sidenav" *ngIf="isHandset$ | async"><tui-svg src="tuiIconArrowLeft"></tui-svg>Close</div>
+      </ul>
+    </nav>
+  </aside>
+
+  <section class="aside">
+    <div class="appbar">
+      <div *ngIf="isHandset$ | async">
+        <tui-svg src="tuiIconMenuLarge" type="submit" (click)="sidenav = !sidenav"></tui-svg>
+      </div>
+      <img
+        src="../../../../assets/logo-trans.png"
+        alt="logo"
+        width="130"
+        height="50"
+      />
+      <div class="hover" (click)="showDialog(logoutdialog)">
+        <span *ngIf="!(isHandset$ | async)">Logout </span> <tui-svg src="tuiIconLogOutLarge"></tui-svg>
+        <ng-template #logoutdialog let-observer>
+          <p class="text-danger h4">Logout</p>
+          <p>Are you sure you want to leave ?</p>
+          <button
+            tuiButton
+            appearance="flat"
+            type="button"
+            size="m"
+            (click)="observer.complete()"
+          >
+            No
+          </button>
+          <button
+            tuiButton
+            type="button"
+            size="m"
+            class="tui-space_right-3"
+            (click)="logout(); observer.complete()"
+          >
+            Yes
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div>
+      <router-outlet ></router-outlet>
+    </div>
+  </section>
+</main>

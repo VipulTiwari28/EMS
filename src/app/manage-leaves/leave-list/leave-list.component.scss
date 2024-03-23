@@ -1,0 +1,30 @@
+.leave-container {
+  min-height: calc(100vh - 75.59px);
+  .card {
+    width: 324px;
+  }
+  .muted {
+    color: gray;
+  }
+  .leave-type {
+    border: 1px solid rgba(black, 0.1);
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    border-radius: 50rem;
+    display: grid;
+    place-items: center;
+  }
+  .cl {
+    background-color: rgba(lightgreen, 0.3);
+    color: black;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+  .sl {
+    background-color: rgba(rgb(255, 172, 172), 0.3);
+    color: black;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+}

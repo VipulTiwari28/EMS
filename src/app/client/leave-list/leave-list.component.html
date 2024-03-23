@@ -1,0 +1,111 @@
+<div class="contain">
+<table mat-table matSortActive="from" matSortDirection="desc" [dataSource]="dataSource" matSort>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+    <td mat-cell *matCellDef="let element">{{ element.type | uppercase }}</td>
+  </ng-container>
+
+  <!-- Reason Column -->
+  <ng-container matColumnDef="reason">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
+    <td mat-cell *matCellDef="let element">{{ element.reason }}</td>
+  </ng-container>
+
+  <!-- From Column -->
+  <ng-container matColumnDef="from">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>From</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.from | date : "dd-MMMM-yyyy" }}
+    </td>
+  </ng-container>
+
+  <!-- To Column -->
+  <ng-container matColumnDef="to">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>To</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.to">
+        {{ element.to | date : "dd-MMMM-yyyy" }}
+      </span>
+      <span *ngIf="!element.to"> NA </span>
+    </td>
+  </ng-container>
+  
+    <!-- Status Column -->
+  <ng-container *ngIf="type != 'pending'">
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let element" [class]="element.status">
+        {{ element.status | uppercase }}
+      </td>
+    </ng-container>
+  </ng-container>
+
+    <!-- Actions Column -->
+  <ng-container *ngIf="type == 'pending'">
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="d-flex gap-1">        <button
+          tuiButton
+          size="s"
+          appearance="secondary"
+          aria-label=" icon button with a delete icon"
+          (click)="showDialog(edit)"
+        >
+          <tui-svg src="tuiIconEdit"></tui-svg>
+        </button>
+
+        <button
+          tuiButton
+          size="s"
+          appearance="secondary-destructive"
+          aria-label=" icon button with a delete icon"
+          (click)="showDialog(delete)"
+        >
+          <tui-svg src="tuiIconTrash"></tui-svg>
+        </button></div>
+
+
+        <ng-template #delete let-observer>
+          <p class="text-danger h4">Confirm Delete</p>
+          <p>Are you sure you want to withdraw this leave request ?</p>
+          <button
+            tuiButton
+            appearance="flat"
+            type="button"
+            size="m"
+            (click)="observer.complete()"
+          >
+            Cancel
+          </button>
+          <button
+            tuiButton
+            appearance="secondary-destructive"
+            type="button"
+            size="m"
+            class="tui-space_right-3"
+            (click)="onDelete(element.key); observer.complete()"
+          >
+            Delete
+          </button>
+        </ng-template>
+
+        <ng-template let-observer #edit>
+          <h1 class="text-center my-1">Update Leave</h1>
+          <app-leave-form
+            [edit]="true"
+            [data]="element"
+            (update)="update.emit()"
+          ></app-leave-form>
+        </ng-template>
+      </td>
+    </ng-container>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<div class="h3 text-muted text-center my-3" *ngIf="!leaves.length">Its lonely here :( </div>
+</div>
