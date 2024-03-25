@@ -26,7 +26,7 @@ export class ManageInfoComponent {
   constructor(
     private fb: FormBuilder,
     private db: FirebaseService,
-
+    public route : Router,
 
   ) {
     this.attendanceForm = this.fb.group({
@@ -57,6 +57,9 @@ export class ManageInfoComponent {
       })
       .subscribe((data)=>{
         console.log(data);
+        alert("Attendance and Payroll Added");
+        this.route.navigateByUrl("/admin");
+
       })
 
     }

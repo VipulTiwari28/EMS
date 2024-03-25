@@ -71,7 +71,7 @@
         <li *ngIf="!isAdmin">
           <a routerLink="/user" routerLinkActive="is-active" (click)="sidenav = !sidenav">Dashboard</a>
         </li>
-        <li *ngIf="!isAdmin">
+        <li *ngIf="isAdmin">
           <a routerLink="/holidays" routerLinkActive="is-active" (click)="sidenav = !sidenav">Holidays</a>
         </li>
         <li *ngIf="!isAdmin">
@@ -97,7 +97,13 @@
       <div *ngIf="isHandset$ | async">
         <tui-svg src="tuiIconMenuLarge" type="submit" (click)="sidenav = !sidenav"></tui-svg>
       </div>
-      <img src="../../../../assets/logo-trans.png" alt="logo" width="130" height="50" />
+      <img
+      src="https://th.bing.com/th/id/R.d3d5cc505e282abe3b78e192f7cefd28?rik=nfbKXqVnHV14mg&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon%2fstaff-icon-58.png&ehk=iKxsymiOZNIozsofUdJ7UJewaQRp97wouUgsj2ALvgI%3d&risl=&pid=ImgRaw&r=0"
+      alt="logo"
+      width="8%"
+      height="5%"
+    />
+      <p> Employee Management System</p>
       <div class="hover" (click)="showDialog(logoutdialog)">
         <span *ngIf="!(isHandset$ | async)">Logout </span> <tui-svg src="tuiIconLogOutLarge"></tui-svg>
         <ng-template #logoutdialog let-observer>

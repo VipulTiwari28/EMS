@@ -160,7 +160,6 @@ export class RegisterComponent {
             .subscribe((data) => {
               console.log(data);
               this.done.emit('add');
-              alert("Successfully Sign Up");
               this.load = false;
               this.router.navigateByUrl("/");
               alert("Successfully Sign Up");
