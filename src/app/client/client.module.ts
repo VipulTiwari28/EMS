@@ -20,7 +20,7 @@ import { LoaderComponent } from '../core/components/loader/loader.component';
   declarations: [
     HomeComponent,
     LeaveFormComponent,
-    LeaveListComponent
+    LeaveListComponent,
   ],
   imports: [
     CommonModule,

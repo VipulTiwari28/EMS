@@ -1,0 +1,45 @@
+<div class="container row gap-2">
+  <form class="add-attendance-form" [formGroup]="attendanceForm" >
+    <div>
+      <label class="text-center tui-form__header" for="id">ID:</label>
+      <input type="text" id="id" formControlName="id" autofocus>
+      <div *ngIf="attendanceForm.get('id')?.invalid && attendanceForm.get('id')?.touched">
+      </div>
+    </div>
+    <div>
+      <label class="text-center tui-form__header" for="attendance">Attendance:</label>
+      <input type="number" id="attendance" formControlName="attendance">
+      <div *ngIf="attendanceForm.get('attendance')?.invalid && attendanceForm.get('attendance')?.touched">
+        <div class="text-danger" *ngIf="attendanceForm.get('attendance')">
+          Attendance is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <label class="text-center tui-form__header" for="payroll">Payroll:</label>
+      <input type="number" id="payroll" formControlName="payroll">
+      <div *ngIf="attendanceForm.get('payroll')?.invalid && attendanceForm.get('payroll')?.touched">
+
+      </div>
+    </div>
+    <button (click)="addAttendance()">Add Attendance and Payroll</button>
+  </form>
+</div>
+
+<!-- <div class="container">
+    <h2>Add Attendance and Payroll</h2>
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" id="id" [(ngModel)]="id" placeholder="Enter ID">
+    </div>
+    <div class="form-group">
+      <label for="attendance">Attendance:</label>
+      <input type="number" id="attendance" [(ngModel)]="attendance" placeholder="Enter attendance">
+    </div>
+    <div class="form-group">
+      <label for="payroll">Payroll:</label>
+      <input type="number" id="payroll" [(ngModel)]="payroll" placeholder="Enter payroll">
+    </div>
+    <button (click)="addAttendance()">Add Attendance and Payroll</button>
+  </div>
+   -->

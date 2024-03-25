@@ -1,1 +1,16 @@
-<p>payroll works!</p>
+<div class="container">
+    <div class="attendance-card">
+      <h2>Your Payroll</h2>
+      <div class="form-group">
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" [(ngModel)]="id"  placeholder="Enter your ID">
+      </div>
+      <button (click)="getPayRoll()">Get PayRoll</button>
+      <div class="attendance-details" *ngIf="payroll">
+        <p>Payroll: {{ payroll}} </p>
+      </div>
+      <div *ngIf="!payroll && id">
+        <p>No payroll data available for the provided ID.</p>
+      </div>
+    </div>
+  </div>

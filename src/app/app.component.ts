@@ -16,6 +16,7 @@ export class AppComponent {
     { name: 'Employees', href: '/admin' },
     { name: 'Holidays', href: '/holidays' },
     { name: 'Leaves', href: '/leaves' },
+    { name: 'Attendance', href: '/attendance'}
   ];
   elem: any;
   constructor(private auth: AuthService, private router: Router) {

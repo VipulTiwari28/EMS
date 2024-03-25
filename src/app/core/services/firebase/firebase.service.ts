@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Attendance } from '../../interfaces/attendance';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +21,7 @@ export class FirebaseService {
     'https://angular-miniproject-default-rtdb.firebaseio.com/leaves/.json';
    
     dbAttendanceUrl =
-    'https://angular-miniproject-default-rtdb.firebaseio.com/attendance/.json';
+    'https://mini-project-default-default-rtdb.firebaseio.com/info/.json';
  
   addUser(user: User): Observable<any> {
     return this.http.put(
@@ -150,13 +151,16 @@ export class FirebaseService {
  
    // Methods for attendance
  
-  //  getAttendance(): Observable<any> {
-  //   return this.http.get(this.dbAttendanceUrl);
-  // }
- 
-  // addAttendance(attendance: Attendance): Observable<Attendance> {
-  //   return this.http.post<Attendance>(`${this.dbAttendanceUrl}.json`, attendance);
-  // }
+   getAttendance(id:string): Observable<any> {
+    return this.http.get(`https://mini-project-default-default-rtdb.firebaseio.com/info/${id}/.json`);
+  }
+
+  addAttendance(data: any): Observable<any> {
+    return this.http.put(`https://mini-project-default-default-rtdb.firebaseio.com/info/${data.id}/.json`, data
+      
+    );
+  }
+    
  
   // updateAttendance(attendance: Attendance): Observable<Attendance> {
   //   return this.http.put<Attendance>(`${this.dbAttendanceUrl}/${attendance.id}.json`, attendance);

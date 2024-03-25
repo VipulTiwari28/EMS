@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 80px); /* Adjust height as needed */
+  margin: 0 auto;
+   /* Center the container horizontally */
+}
+
+.attendance-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Increased shadow intensity */
+  padding: 2rem;
+  margin-top: 2rem;
+  width: 300px; /* Adjust width as needed */
+  border: 1px solid #ddd; /* Added a solid border */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1.1rem; /* Increased font size for labels */
+}
+
+.attendance-details p {
+  font-size: 1.5rem; /* Increased font size for attendance percentage */
+  margin-bottom: 0;
+}
+
+button {
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #3e8e41; /* Darker green on hover */
+}

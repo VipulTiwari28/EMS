@@ -34,14 +34,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RegisterComponent } from './register/register.component';
-import { AttendanceComponent } from './attendance/attendance.component';
-import { PayrollComponent } from './payroll/payroll.component';
-import { ManageAttendanceComponent } from './manage-attendance/manage-attendance.component';
-import { ManagePayrollComponent } from './manage-payroll/manage-payroll.component';
+
 
 @NgModule({
-  declarations: [AppComponent, SidenavComponent, AttendanceComponent, PayrollComponent, ManageAttendanceComponent, ManagePayrollComponent],
+  declarations: [AppComponent, SidenavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

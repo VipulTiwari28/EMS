@@ -37,6 +37,21 @@ const routes: Routes = [
           import('./client/client.module').then((e) => e.ClientModule),
       },
       {
+        path: 'payroll',
+        loadComponent: () =>
+          import('./payroll/payroll.component').then((e) => e.PayrollComponent),
+      },
+      {
+        path: 'attendance',
+        loadComponent: () =>
+          import('./attendance/attendance.component').then((e) => e.AttendanceComponent),
+      },
+      {
+        path: 'Info',
+        loadComponent: () =>
+          import('./manage-info/manage-info.component').then((e) => e.ManageInfoComponent),
+      },
+      {
         path: 'holidays',
         canActivate: [isAdminGuard],
         loadChildren: () =>
@@ -67,4 +82,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

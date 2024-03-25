@@ -1,1 +1,16 @@
-<p>attendance works!</p>
+<div class="container">
+  <div class="attendance-card">
+    <h2>Your Attendance</h2>
+    <div class="form-group">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" [(ngModel)]="id" placeholder="Enter your ID">
+    </div>
+    <button (click)="getAttendance()">Get Attendance</button>
+    <div class="attendance-details" *ngIf="userAttendance">
+      <p>Attendance Percentage: {{ userAttendance}}%</p>
+    </div>
+    <div *ngIf="!userAttendance && id">
+      <p>No attendance data available for the provided ID.</p>
+    </div>
+  </div>
+</div>

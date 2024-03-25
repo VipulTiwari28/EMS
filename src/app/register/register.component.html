@@ -6,11 +6,11 @@
     </section>
 
     <section class="login-container">
-        <img src="https://webstockreview.net/images/discussion-clipart-group-talk-3.png" width="25%" height="25%" />
-        <form class="login-form" [formGroup]="registerForm" (ngSubmit)="registerForm">
+        <img src="https://webstockreview.net/images/discussion-clipart-group-talk-3.png" width="25%" height="25%" alt="images" />
+        <form class="login-form" [formGroup]="registerForm" >
             <div>
                 <label class="text-center tui-form__header" for="id">Id:</label>
-                <input type="text" id="username" formControlName="id" autofocus>
+                <input type="text" id="Id" formControlName="id" autofocus>
                 <div>
                     <!-- <div *ngIf="registerForm.get('Id')?.hasError('required') && registerForm.get('Id')?.touched"></div> -->
                     <!-- <div class="text-danger" *ngIf="registerForm.controls['id'].errors?.">
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <label class="text-center tui-form__header" for="name">Name:</label>
-                <input type="text" id="username" formControlName="name" autofocus>
+                <input type="text" id="name" formControlName="name" autofocus>
                 <div>
                     <!-- <div
                         *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched">
@@ -51,9 +51,9 @@
                 </div>
             </div>
 
-            <input type="submit" class="btn btn-secondary" [disabled]="registerForm.invalid" value="Register" />
-
-            <a href="/login" class="secondaryButton btn btn-secondary">Already a member? Sign In</a>
+            <input type="submit" class="btn btn-secondary" [disabled]="registerForm.invalid" value="Register" (click)="onRegister()" />
+            <!-- <a href="/login" type="submit"  class="secondaryButton btn btn-secondary" [ariaDisabled]="registerForm.invalid" onclick="onRegister()"> Register </a> -->
+            <a href="/login"  class="secondaryButton btn btn-secondary">Already a member? Sign In</a>
             <!-- <input type="submit" value="Register" /> -->
         </form>
     </section>
